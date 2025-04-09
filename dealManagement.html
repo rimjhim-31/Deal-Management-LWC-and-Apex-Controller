@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Deal Management" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <lightning-button label="New Deal" variant="brand" onclick={handleNew}></lightning-button>
+        </div>
+
+        <template if:true={showModal}>
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-modal__title">New Deal</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <lightning-record-edit-form
+                            object-api-name="Deal__c"
+                            onsuccess={handleSuccess}
+                            oncancel={handleCancel}>
+
+                            <lightning-input-field field-name="Name"></lightning-input-field>
+                            <lightning-input-field field-name="Amount__c"></lightning-input-field>
+                            <lightning-input-field field-name="Stage__c"></lightning-input-field>
+                            <lightning-input-field field-name="Close_Date__c"></lightning-input-field>
+
+                            <div class="slds-m-top_medium">
+                                <lightning-button variant="brand" type="submit" label="Save"></lightning-button>
+                                <lightning-button variant="neutral" label="Cancel" onclick={handleCancel} class="slds-m-left_small"></lightning-button>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+</template>
